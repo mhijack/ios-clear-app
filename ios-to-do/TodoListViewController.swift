@@ -47,6 +47,14 @@ class TodoListViewController: UITableViewController {
         cell.textLabel?.text = items[indexPath.row]
         return cell;
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.items.remove(at: indexPath.row)
+//            tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
 
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -61,5 +69,6 @@ class TodoListViewController: UITableViewController {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
+    
 }
 
