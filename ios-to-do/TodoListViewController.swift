@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    let items = [
+    var items = [
         "MADIOS-1",
         "MADIOS-2",
         "MADIOS-3"
@@ -49,5 +49,17 @@ class TodoListViewController: UITableViewController {
     }
 
 
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "What?", message: "Say something here", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
+            self.items.append(alert.textFields?.first?.text ?? "")
+            self.tableView.reloadData()
+        }
+        alert.addTextField { (textfield) in
+            textfield.placeholder = "What's up?"
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
